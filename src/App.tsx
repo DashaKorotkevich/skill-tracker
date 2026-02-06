@@ -16,11 +16,7 @@ function App() {
     <Routes>
       <Route path="login" element={<LoginPage />} />
 
-      <Route path="/" element={
-
-        <ProtectedRoute>
-          <Layout />
-        </ProtectedRoute>}>
+      <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
 
         <Route index element={<DashboardPage />} />
         <Route path="tasks" element={<TasksPage />} />

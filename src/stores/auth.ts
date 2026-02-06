@@ -1,99 +1,105 @@
 // stores/auth.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { User, LoginCredentials } from '@shared/types/auth';
+import type { User, LoginBase } from '@shared/types/auth';
+import { authApi } from '@/api/auth';
+import { getErrorMessage } from '@/api/clients';
+import { STORAGE_KEYS } from '@/shared/config/constants';
 
 interface AuthStore {
-  // Состояние
+  // Состояния
   user: User | null;
-  token: string | null;
   isLoading: boolean;
   error: string | null;
   
-  // Геттеры (computed)
-  isAuthenticated: boolean;
-  isAdmin: boolean;
-  
-  // Действия
-  login: (credentials: LoginCredentials) => Promise<void>;
-  logout: () => void;
-  setUser: (user: User | null) => void;
-  setToken: (token: string | null) => void;
-  clearError: () => void;
+  // Здесь были геттеры, но в зустанде они ЗАЛУПА (если использовать с persist(middleware)) и больше их здесь нет 
+
+  // Методы
+  login: (credentials: LoginBase) => Promise<User>;
+  logout: () => Promise<void>;
+  checkAuth: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthStore>()(
   persist(
-    (set, get) => ({
-      // === Начальное состояние ===
+    (set) => ({
+      // Состояния
       user: null,
-      token: null,
       isLoading: false,
       error: null,
       
-      // === Геттеры ===
-      get isAuthenticated() {
-        return !!get().token;
-      },
-      
-      get isAdmin() {
-        const user = get().user;
-        return user?.role === 'admin';
-      },
-      
-      // === Действия ===
-      login: async (credentials: LoginCredentials) => {
+      // Методы
+      login: async (credentials) => {
         set({ isLoading: true, error: null });
         
         try {
-          // TODO: Заменить на реальный API
-          // const response = await authAPI.login(credentials);
+          const response = await authApi.login(credentials);     
           
-          // Моковые данные
-          const mockUser: User = {
-            id: '1',
-            email: credentials.email,
-            name: credentials.email.includes('admin') ? 'Админ' : 'Сотрудник',
-            role: credentials.email.includes('admin') ? 'admin' : 'employee',
-          };
-          
-          const mockToken = 'mock-jwt-token-123';
-          
-          set({
-            user: mockUser,
-            token: mockToken,
+          localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, response.access_token);
+
+          set({ 
+            user: response.user, 
             isLoading: false,
+            error: null
           });
+
+          return response.user;
           
-          console.log('Успешный вход:', mockUser);
         } catch (error) {
-          const message = error instanceof Error ? error.message : 'Ошибка входа';
-          set({ error: message, isLoading: false });
-          console.error('Ошибка входа:', error);
+          const errorMessage = getErrorMessage(error);
+          set({ 
+            error: errorMessage, 
+            isLoading: false 
+          });
+          throw new Error(errorMessage);
         }
       },
       
-      logout: () => {
-        set({
-          user: null,
-          token: null,
-          isLoading: false,
-          error: null,
-        });
-        console.log('Выход из системы');
+      logout: async () => {
+        try {
+          await authApi.logout();
+        } catch (error) {
+          console.error('Ошибка выхода:', error);
+        } finally {
+          localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+          set({ 
+            user: null,
+            error: null
+          });
+        }
       },
       
-      setUser: (user) => set({ user }),
-      setToken: (token) => set({ token }),
-      clearError: () => set({ error: null }),
+      checkAuth: async () => {
+        set({ isLoading: true });
+        
+        try {
+          const response = await authApi.checkAuth();
+          
+          set({ 
+            user: response.user,
+            isLoading: false,
+            error: null
+          });
+          
+        } catch (error) {
+          console.error('Ошибка проверки авторизации:', error);
+          localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+          set({ 
+            user: null,
+            isLoading: false,
+            error: null
+          });
+        }
+      }
     }),
     {
-      name: 'auth-storage', // Ключ в localStorage
+      name: 'auth-storage',
       partialize: (state) => ({
-        user: state.user,
-        token: state.token,
-        // isLoading и error не сохраняем
+        user: state.user // Сохраняем только пользователя
       }),
+      onRehydrateStorage: () => (state) => {
+        console.log('✅ Zustand restored:', state?.user?.username || 'no user');
+      }
     }
   )
 );
