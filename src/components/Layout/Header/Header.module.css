@@ -1,0 +1,89 @@
+.container {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.itemsContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+    background-color:burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.logoIcon{
+    color: white;      
+    width: 20px;         
+    height: 20px;
+    stroke-width: 2;
+}
+
+.bellIcon{
+    color: #555;      
+    width: 20px;         
+    height: 20px;
+    stroke-width: 2;
+}
+
+.bellButton {
+    position: relative;  /* 👈 обязательно */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.bellButton::after {
+    content: attr(data-count);  /* 👈 число из data-атрибута */
+    position: absolute;
+    top: 5px;
+    right: 0;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 1px;
+    background-color: #ef4444;  /* красный */
+    color: white;
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid white;
+    transform: translate(25%, -25%);
+}
+
+.accContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px
+}
+
+.accInfoContainer{
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+
+.logoutText {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logoutText:hover {
+    color: #161c47;
+}

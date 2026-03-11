@@ -1,4 +1,4 @@
-// providers/ProtectedRoute.tsx
+// routes/ProtectedRoute.tsx
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '@stores/auth';
 
@@ -12,7 +12,7 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const location = useLocation();
   
-  const isAuthenticated = useAuthStore(state => state.user);
+  const isAuthenticated = useAuthStore(state => state.isAuth);
   
   console.log('🛡️ ProtectedRoute:', {
     path: location.pathname,

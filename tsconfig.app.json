@@ -24,7 +24,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    /* Paths - ДОБАВЬ ЭТО */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -35,7 +34,9 @@
       "@pages/*": ["src/pages/*"],
       "@api/*": ["src/api/*"],
       "@hooks/*": ["src/shared/hooks/*"],
-      "@providers/*": ["src/providers/*"]
+      "@providers/*": ["src/providers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@routes": ["src/routes"],
     }
   },
   "include": ["src"]

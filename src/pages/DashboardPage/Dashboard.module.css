@@ -1,0 +1,19 @@
+
+.container{
+    width: 90%;
+    text-align: left;
+    padding: 2rem;
+}
+
+.statsCards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.statsCard{
+    background-color: #ebebeb;
+    width: clamp(250px, 5vw, 300px);
+    height: clamp(110px, 5vw, 130px);
+    border-radius: 15px;
+    padding: 1rem;
+}

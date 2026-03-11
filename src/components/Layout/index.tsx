@@ -1,14 +1,18 @@
 // components/Layout/index.tsx
+
 import { Header } from './Header';
-import { Sidebar } from './Sidebar';
+import { SideBar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
+import styles from './Layout.module.css';
 
 export const Layout = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
-      <Outlet />
+      <div className={styles.container}>
+        <SideBar/>
+        <Outlet/>
+      </div>
     </div>
   );
 };

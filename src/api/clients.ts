@@ -1,6 +1,6 @@
 // api/client
 import axios from 'axios';
-import type { AxiosError, AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
 import { API_BASE_URL, STORAGE_KEYS } from '@shared/config/constants';
 
 /**
@@ -11,7 +11,6 @@ export const apiClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  //withCredentials: false, // для работы с cookies
 });
 
 /**

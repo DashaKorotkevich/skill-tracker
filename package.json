@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "sideEffects": false,
   "scripts": {
     "dev": "set HTTPS=true && vite",
     "build": "tsc -b && vite build",
@@ -13,6 +14,7 @@
     "@vitejs/plugin-basic-ssl": "^2.1.4",
     "axios": "^1.13.4",
     "formik": "^2.4.9",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0",
@@ -31,6 +33,7 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }

@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuthStore } from '@stores/auth';
+import { useAuthStore } from '@stores';
 import type { LoginBase } from '@shared/types/auth';
 
 // Валидация

@@ -1,13 +1,5 @@
 // shared/types/auth.ts
-// shared/types/auth.ts
-export type UserRole = 'admin' | 'employee';
-
-export interface User {
-  id: string;
-  username: string; // логин для входа
-  name: string;
-  role: UserRole;
-}
+import type { User } from "./user";
 
 export interface LoginBase {
   username: string;

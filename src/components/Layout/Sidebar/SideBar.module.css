@@ -1,0 +1,13 @@
+.nav{
+    flex-direction: column;
+    display: flex;
+    align-items: start;
+}
+
+.sideBar{
+  width: 10%;
+  min-width: 200px; /* Минимальная ширина, чтобы не сжимался слишком */
+  max-width: 300px;
+  padding: 2rem 0;
+}
+
