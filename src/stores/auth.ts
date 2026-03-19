@@ -2,8 +2,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { LoginBase, User } from '@shared/types';
-import { authApi } from '@/api/auth';
-import { getErrorMessage } from '@/api/clients';
+import { authApi } from '@api';
+import { getErrorMessage } from '@api';
 import { STORAGE_KEYS } from '@/shared/config/constants';
 import { useUserStore } from './user';
 
@@ -76,8 +76,6 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true });
         
         try {
-          const response = await authApi.checkAuth();
-          
           set({ 
             isAuth: true,
             isLoading: false,

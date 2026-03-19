@@ -1,8 +1,8 @@
-import { useAuthStore } from '@stores/auth';
+import { useUserStore } from '@stores/user';
 import styles from './UserAvatar.module.css';
 
 export const UserAvatar = () => {
-    const { user } = useAuthStore();
+    const { user } = useUserStore();
     
     if (!user) return null;
     

@@ -1,3 +1,3 @@
 export { useAuthStore } from './auth';
-//export { useUserStore } from './user';
+export { useUserStore } from './user';
 

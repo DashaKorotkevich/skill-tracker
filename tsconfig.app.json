@@ -32,6 +32,7 @@
       "@stores": ["src/stores"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
+      "@api": ["src/api"],
       "@api/*": ["src/api/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@providers/*": ["src/providers/*"],
