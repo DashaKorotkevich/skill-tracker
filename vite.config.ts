@@ -13,9 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://apiskilltracker.tw1.ru', // ваш бекенд
+        target: 'http://localhost:8000', // ваш бекенд
         changeOrigin: true,
-        secure: true,
+        secure: false, // http
       }
     }
   },

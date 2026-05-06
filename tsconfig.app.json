@@ -24,20 +24,21 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@shared/*": ["src/shared/*"],
-      "@stores/*": ["src/stores/*"],
-      "@stores": ["src/stores"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@api": ["src/api"],
-      "@api/*": ["src/api/*"],
-      "@hooks/*": ["src/shared/hooks/*"],
-      "@providers/*": ["src/providers/*"],
-      "@routes/*": ["src/routes/*"],
-      "@routes": ["src/routes"],
+      "@/*": ["./src/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@stores": ["./src/stores"],
+      "@components/*": ["./src/components/*"],//d
+      "@pages/*": ["./src/pages/*"],
+      "@api": ["./src/api"],
+      "@api/*": ["./src/api/*"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+      "@providers/*": ["./src/providers/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@routes": ["./src/routes"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@widgets": ["./src/widgets"]
     }
   },
   "include": ["src"]

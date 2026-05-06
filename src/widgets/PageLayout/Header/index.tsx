@@ -5,7 +5,7 @@ import { useUserStore } from '@stores/user';
 import { useNotificationStore } from '@stores/notification';
 import styles from './Header.module.css';
 import { CircleCheck, Bell } from 'lucide-react';
-import { UserAvatar } from '@/components/ui';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
@@ -40,7 +40,7 @@ export const Header = () => {
                     <Bell className={styles.bellIcon} />
                 </button>
                 <div className={styles.accContainer}>
-                    <UserAvatar />
+                    <Avatar label='AI'/>
                     <div className={styles.accInfoContainer}>
                         <p>{user?.name || 'Иван Иванов'}</p>
                         <p>{user?.role || 'акк'}</p>

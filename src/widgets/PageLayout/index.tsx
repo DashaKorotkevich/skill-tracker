@@ -1,11 +1,11 @@
-// components/Layout/index.tsx
+// components/PageLayout/index.tsx
 
 import { Header } from './Header';
 import { SideBar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import styles from './Layout.module.css';
 
-export const Layout = () => {
+export const PageLayout = () => {
   return (
     <div>
       <Header />

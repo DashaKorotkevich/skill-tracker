@@ -3,9 +3,12 @@ import styles  from "./Dashboard.module.css";
 import { useUserStore } from '@stores/user';
 import { useTasksStore } from "@/stores/tasks";
 import { useEffect } from 'react';
-import { KPICard } from "@/components/ui";
+import { KPICard } from "@/shared/ui/KPICard/KPICard";
+import { Clipboard, Zap, CircleCheck, Clock4 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TaskCard } from "@/components/shared";
+import { COLORS } from '@/shared/config/colors';
+import { TASK_STATUS_COLORS } from '@/entities/task/model/consts';
 
 export const DashboardPage = () => {
     const navigate = useNavigate();
@@ -30,29 +33,29 @@ export const DashboardPage = () => {
             </h1>
             <p> {(isAdmin)? 'Вы управляете проектами' : 'Ваши задачи'}</p>
             <div className={styles.flexBetween}>
-                <KPICard  
+                <KPICard  
                     title="Всего" 
                     value={totalCount}
-                    variant="total"
-                    icon="📋"
+                    icon={<Clipboard size={20} color={COLORS.orange}/>} 
+                    valueColor={COLORS.orange}
                 />
                 <KPICard  
                     title="В работе" 
                     value={inProgress}
-                    variant="inProgress"
-                    icon="📋"
+                    icon={<Zap size={20} color={TASK_STATUS_COLORS.inProgress}/>} 
+                    valueColor={TASK_STATUS_COLORS.inProgress}
                 />
                 <KPICard  
                     title="Завершено" 
                     value={completed}
-                    variant="completed"
-                    icon="📋"
+                    icon={<CircleCheck size={20} color={TASK_STATUS_COLORS.completed}/>} 
+                    valueColor={TASK_STATUS_COLORS.completed}
                 />
                 <KPICard  
                     title="Ожидают" 
                     value={pending}
-                    variant="pending"
-                    icon="📋"
+                    icon={<Clock4 size={20} color={TASK_STATUS_COLORS.pending}/>} 
+                    valueColor={TASK_STATUS_COLORS.pending}
                 />
             </div>
             <div className={styles.flexBetween}>

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from '@components/Layout';
+import { PageLayout } from '@widgets/PageLayout';
 import { DashboardPage } from '@pages/DashboardPage';
 import { TasksPage } from '@pages/TasksPage';
 import { TaskDetailPage } from '@pages/TaskDetailPage';
@@ -15,7 +15,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="login" element={<LoginPage />} />
 
-            <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+            <Route path="/" element={<ProtectedRoute><PageLayout /></ProtectedRoute>}>
 
                 <Route index element={<DashboardPage />} />
                 <Route path="tasks" element={<TasksPage />} />
